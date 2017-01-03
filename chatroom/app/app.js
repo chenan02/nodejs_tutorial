@@ -6,9 +6,9 @@ var express = require('express'),
   routes = require('./routes');
 
 var app = express(),
-    httpserver = require('http').Server(app),
-    socketio = require('./socketio').listen(httpserver);
-    //socketio = require('socket.io')(httpserver);
+    server = require('http').Server(app),
+    socketio = require('./socketio').listen(server);
+    //io = require('socket.io')(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,7 +37,7 @@ app.use(routes);
 
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
 	// log a message to console!
 });
 
